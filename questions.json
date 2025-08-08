@@ -1,0 +1,409 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does NASCAR stand for?",
+      "options": ["National Association for Stock Car Auto Racing", "North American Stock Car Auto Racing", "National American Stock Car Association Racing", "National Auto Stock Car Association Racing"],
+      "correct": 0,
+      "explanation": "NASCAR stands for National Association for Stock Car Auto Racing, founded in 1948.",
+      "difficulty": "easy",
+      "category": "history"
+    },
+    {
+      "id": 2,
+      "question": "Which track is known as 'The Great American Race'?",
+      "options": ["Talladega", "Charlotte Motor Speedway", "Daytona International Speedway", "Indianapolis Motor Speedway"],
+      "correct": 2,
+      "explanation": "Daytona International Speedway hosts the Daytona 500, known as 'The Great American Race'.",
+      "difficulty": "easy",
+      "category": "tracks"
+    },
+    {
+      "id": 3,
+      "question": "Which driver is known as 'The Intimidator'?",
+      "options": ["Dale Earnhardt Jr.", "Dale Earnhardt Sr.", "Tony Stewart", "Kevin Harvick"],
+      "correct": 1,
+      "explanation": "Dale Earnhardt Sr. was nicknamed 'The Intimidator' for his aggressive driving style.",
+      "difficulty": "easy",
+      "category": "drivers"
+    },
+    {
+      "id": 4,
+      "question": "What year was NASCAR founded?",
+      "options": ["1947", "1948", "1949", "1950"],
+      "correct": 1,
+      "explanation": "NASCAR was officially founded on February 21, 1948, by Bill France Sr.",
+      "difficulty": "easy",
+      "category": "history"
+    },
+    {
+      "id": 5,
+      "question": "How many laps is the Daytona 500?",
+      "options": ["400", "500", "200", "300"],
+      "correct": 2,
+      "explanation": "The Daytona 500 is 200 laps around the 2.5-mile track, totaling 500 miles.",
+      "difficulty": "easy",
+      "category": "races"
+    },
+    {
+      "id": 6,
+      "question": "What number did Dale Earnhardt Sr. drive?",
+      "options": ["3", "8", "24", "48"],
+      "correct": 0,
+      "explanation": "Dale Earnhardt Sr. famously drove the #3 Chevrolet for most of his career.",
+      "difficulty": "easy",
+      "category": "drivers"
+    },
+    {
+      "id": 7,
+      "question": "Which manufacturer currently competes in NASCAR Cup Series?",
+      "options": ["Honda", "Chevrolet", "Nissan", "Subaru"],
+      "correct": 1,
+      "explanation": "Chevrolet is one of the three current NASCAR Cup Series manufacturers, along with Ford and Toyota.",
+      "difficulty": "easy",
+      "category": "manufacturers"
+    },
+    {
+      "id": 8,
+      "question": "What is the nickname for Talladega Superspeedway?",
+      "options": ["The Monster Mile", "The Big One", "Dega", "The Paperclip"],
+      "correct": 2,
+      "explanation": "Talladega Superspeedway is commonly nicknamed 'Dega' by fans and drivers.",
+      "difficulty": "easy",
+      "category": "tracks"
+    },
+    {
+      "id": 9,
+      "question": "Which city is home to the NASCAR Hall of Fame?",
+      "options": ["Daytona Beach", "Charlotte", "Atlanta", "Nashville"],
+      "correct": 1,
+      "explanation": "The NASCAR Hall of Fame is located in Charlotte, North Carolina.",
+      "difficulty": "easy",
+      "category": "history"
+    },
+    {
+      "id": 10,
+      "question": "What is the most common type of NASCAR track surface?",
+      "options": ["Concrete", "Asphalt", "Dirt", "Clay"],
+      "correct": 1,
+      "explanation": "Most NASCAR Cup Series tracks use asphalt surfaces, though some like Bristol have concrete and a few dirt tracks exist in other series.",
+      "difficulty": "easy",
+      "category": "tracks"
+    },
+    {
+      "id": 11,
+      "question": "What color flag signals the start of a NASCAR race?",
+      "options": ["Yellow", "White", "Green", "Black"],
+      "correct": 2,
+      "explanation": "The green flag signals the start of a NASCAR race and restart after cautions.",
+      "difficulty": "easy",
+      "category": "rules"
+    },
+    {
+      "id": 12,
+      "question": "Which track is known as 'Thunder Valley'?",
+      "options": ["Bristol Motor Speedway", "Dover International Speedway", "Richmond Raceway", "Martinsville Speedway"],
+      "correct": 0,
+      "explanation": "Bristol Motor Speedway is nicknamed 'Thunder Valley' due to its unique acoustics and atmosphere.",
+      "difficulty": "easy",
+      "category": "tracks"
+    },
+    {
+      "id": 13,
+      "question": "What number did Jeff Gordon drive for most of his career?",
+      "options": ["24", "48", "88", "3"],
+      "correct": 0,
+      "explanation": "Jeff Gordon drove the iconic #24 Chevrolet for Hendrick Motorsports throughout most of his career.",
+      "difficulty": "easy",
+      "category": "drivers"
+    },
+    {
+      "id": 14,
+      "question": "What is the shape of most NASCAR tracks?",
+      "options": ["Circle", "Figure-8", "Oval", "Triangle"],
+      "correct": 2,
+      "explanation": "Most NASCAR tracks are oval-shaped, though some are triangular or D-shaped ovals.",
+      "difficulty": "easy",
+      "category": "tracks"
+    },
+    {
+      "id": 15,
+      "question": "Which flag indicates the final lap of a NASCAR race?",
+      "options": ["Checkered", "White", "Yellow", "Red"],
+      "correct": 1,
+      "explanation": "The white flag is displayed to indicate the final lap of a NASCAR race.",
+      "difficulty": "easy",
+      "category": "rules"
+    },
+    {
+      "id": 16,
+      "question": "Who holds the record for most NASCAR Cup Series championships?",
+      "options": ["Dale Earnhardt", "Richard Petty", "Jimmie Johnson", "Jeff Gordon"],
+      "correct": 2,
+      "explanation": "Jimmie Johnson holds the record with 7 NASCAR Cup Series championships (2006-2010, 2013, 2016).",
+      "difficulty": "medium",
+      "category": "drivers"
+    },
+    {
+      "id": 17,
+      "question": "What is the banking angle at Daytona International Speedway?",
+      "options": ["24 degrees", "31 degrees", "36 degrees", "18 degrees"],
+      "correct": 1,
+      "explanation": "Daytona's turns are banked at 31 degrees, helping cars maintain high speeds.",
+      "difficulty": "medium",
+      "category": "tracks"
+    },
+    {
+      "id": 18,
+      "question": "Which manufacturer has won the most NASCAR Cup Series championships?",
+      "options": ["Ford", "Chevrolet", "Toyota", "Dodge"],
+      "correct": 1,
+      "explanation": "Chevrolet has won the most NASCAR Cup Series manufacturer championships in the modern era.",
+      "difficulty": "medium",
+      "category": "manufacturers"
+    },
+    {
+      "id": 19,
+      "question": "What is the maximum number of cars that traditionally start a NASCAR Cup Series race?",
+      "options": ["36", "40", "43", "38"],
+      "correct": 2,
+      "explanation": "Traditionally, a maximum of 43 cars could start a NASCAR Cup Series race, though this has been reduced in recent years to 40.",
+      "difficulty": "medium",
+      "category": "rules"
+    },
+    {
+      "id": 20,
+      "question": "Which track is known as 'The Lady in Black'?",
+      "options": ["Darlington Raceway", "Bristol Motor Speedway", "Richmond Raceway", "Phoenix Raceway"],
+      "correct": 0,
+      "explanation": "Darlington Raceway is nicknamed 'The Lady in Black' and 'The Track Too Tough to Tame'.",
+      "difficulty": "medium",
+      "category": "tracks"
+    },
+    {
+      "id": 21,
+      "question": "What is the current playoff format called in NASCAR Cup Series?",
+      "options": ["The Chase", "NASCAR Playoffs", "Championship 4", "The Eliminator"],
+      "correct": 1,
+      "explanation": "The current playoff format is officially called the NASCAR Playoffs, replacing the previous Chase format.",
+      "difficulty": "medium",
+      "category": "rules"
+    },
+    {
+      "id": 22,
+      "question": "Which driver has won the most Daytona 500s?",
+      "options": ["Dale Earnhardt Sr.", "Richard Petty", "Cale Yarborough", "Jeff Gordon"],
+      "correct": 1,
+      "explanation": "Richard Petty won the Daytona 500 seven times (1964, 1966, 1971, 1973, 1974, 1979, 1981).",
+      "difficulty": "medium",
+      "category": "races"
+    },
+    {
+      "id": 23,
+      "question": "What is the length of the Talladega Superspeedway?",
+      "options": ["2.0 miles", "2.66 miles", "2.5 miles", "3.0 miles"],
+      "correct": 1,
+      "explanation": "Talladega Superspeedway is 2.66 miles long, making it the longest track in NASCAR.",
+      "difficulty": "medium",
+      "category": "tracks"
+    },
+    {
+      "id": 24,
+      "question": "Which team owner has won the most NASCAR Cup Series owner championships?",
+      "options": ["Rick Hendrick", "Joe Gibbs", "Richard Childress", "Jack Roush"],
+      "correct": 0,
+      "explanation": "Rick Hendrick has won the most NASCAR Cup Series owner championships with 14 titles.",
+      "difficulty": "medium",
+      "category": "teams"
+    },
+    {
+      "id": 25,
+      "question": "What year did Toyota join NASCAR Cup Series competition?",
+      "options": ["2005", "2007", "2008", "2006"],
+      "correct": 1,
+      "explanation": "Toyota joined NASCAR Cup Series competition in 2007 as the first foreign manufacturer.",
+      "difficulty": "medium",
+      "category": "manufacturers"
+    },
+    {
+      "id": 26,
+      "question": "Which track is known for the 'Darlington Stripe'?",
+      "options": ["Charlotte Motor Speedway", "Darlington Raceway", "Atlanta Motor Speedway", "Homestead-Miami Speedway"],
+      "correct": 1,
+      "explanation": "Darlington Raceway is famous for the 'Darlington Stripe' - paint marks cars get from scraping the wall.",
+      "difficulty": "medium",
+      "category": "tracks"
+    },
+    {
+      "id": 27,
+      "question": "What is the minimum weight requirement for a NASCAR Cup Series car?",
+      "options": ["3200 lbs", "3300 lbs", "3400 lbs", "3500 lbs"],
+      "correct": 2,
+      "explanation": "NASCAR Cup Series cars must weigh a minimum of 3,400 pounds including the driver.",
+      "difficulty": "medium",
+      "category": "technical"
+    },
+    {
+      "id": 28,
+      "question": "Which driver is known as 'Awesome Bill from Dawsonville'?",
+      "options": ["Bill Elliott", "Bill France", "Bill Davis", "Bill Lester"],
+      "correct": 0,
+      "explanation": "Bill Elliott earned the nickname 'Awesome Bill from Dawsonville' after his hometown in Georgia.",
+      "difficulty": "medium",
+      "category": "drivers"
+    },
+    {
+      "id": 29,
+      "question": "What does the term 'loose' mean in NASCAR?",
+      "options": ["Car turns too easily", "Car won't turn enough", "Car is too fast", "Car is too slow"],
+      "correct": 0,
+      "explanation": "A 'loose' car in NASCAR means the rear end wants to slide out, making the car turn too easily or oversteer.",
+      "difficulty": "medium",
+      "category": "technical"
+    },
+    {
+      "id": 30,
+      "question": "Which race is known as the 'World 600'?",
+      "options": ["Daytona 500", "Coca-Cola 600", "Southern 500", "Brickyard 400"],
+      "correct": 1,
+      "explanation": "The Coca-Cola 600 at Charlotte Motor Speedway was historically known as the 'World 600'.",
+      "difficulty": "medium",
+      "category": "races"
+    },
+    {
+      "id": 31,
+      "question": "Who was the first driver to win the NASCAR Cup Series championship?",
+      "options": ["Lee Petty", "Red Byron", "Herb Thomas", "Tim Flock"],
+      "correct": 1,
+      "explanation": "Red Byron won the first NASCAR Strictly Stock (now Cup Series) championship in 1949.",
+      "difficulty": "hard",
+      "category": "history"
+    },
+    {
+      "id": 32,
+      "question": "What is the exact banking angle at Bristol Motor Speedway?",
+      "options": ["36 degrees", "28 degrees", "24-28 degrees", "30 degrees"],
+      "correct": 2,
+      "explanation": "Bristol Motor Speedway has variable banking from 24-28 degrees in the turns.",
+      "difficulty": "hard",
+      "category": "tracks"
+    },
+    {
+      "id": 33,
+      "question": "Which driver has the most wins at Talladega Superspeedway?",
+      "options": ["Dale Earnhardt Sr.", "Jeff Gordon", "Dale Earnhardt Jr.", "Jimmie Johnson"],
+      "correct": 2,
+      "explanation": "Dale Earnhardt Jr. has 6 wins at Talladega Superspeedway, more than any other driver.",
+      "difficulty": "hard",
+      "category": "drivers"
+    },
+    {
+      "id": 34,
+      "question": "What year was the first NASCAR race held at Daytona Beach?",
+      "options": ["1948", "1949", "1959", "1936"],
+      "correct": 3,
+      "explanation": "The first NASCAR race at Daytona Beach was held in 1936, before NASCAR was officially founded.",
+      "difficulty": "hard",
+      "category": "history"
+    },
+    {
+      "id": 35,
+      "question": "Which engine configuration is used in current NASCAR Cup Series cars?",
+      "options": ["V6 Turbo", "V8 Naturally Aspirated", "V8 Supercharged", "Inline-4 Turbo"],
+      "correct": 1,
+      "explanation": "NASCAR Cup Series cars use naturally aspirated V8 engines producing approximately 670 horsepower.",
+      "difficulty": "hard",
+      "category": "technical"
+    },
+    {
+      "id": 36,
+      "question": "What is the horsepower rating of current NASCAR Cup Series engines?",
+      "options": ["550 HP", "670 HP", "750 HP", "900 HP"],
+      "correct": 1,
+      "explanation": "Current NASCAR Cup Series engines produce approximately 670 horsepower at most tracks.",
+      "difficulty": "hard",
+      "category": "technical"
+    },
+    {
+      "id": 37,
+      "question": "Which track was the first superspeedway built specifically for NASCAR?",
+      "options": ["Daytona International Speedway", "Charlotte Motor Speedway", "Atlanta Motor Speedway", "Talladega Superspeedway"],
+      "correct": 0,
+      "explanation": "Daytona International Speedway, opened in 1959, was the first superspeedway built specifically for NASCAR.",
+      "difficulty": "hard",
+      "category": "history"
+    },
+    {
+      "id": 38,
+      "question": "What is the minimum number of races a driver must attempt to be eligible for Rookie of the Year?",
+      "options": ["26", "30", "36", "All scheduled races"],
+      "correct": 0,
+      "explanation": "A driver must attempt at least 26 races to be eligible for NASCAR Cup Series Rookie of the Year.",
+      "difficulty": "hard",
+      "category": "rules"
+    },
+    {
+      "id": 39,
+      "question": "Which year did NASCAR introduce the Car of Tomorrow (COT)?",
+      "options": ["2006", "2007", "2008", "2009"],
+      "correct": 1,
+      "explanation": "NASCAR introduced the Car of Tomorrow (COT) in 2007 to improve safety and competition.",
+      "difficulty": "hard",
+      "category": "technical"
+    },
+    {
+      "id": 40,
+      "question": "What is the qualifying record speed at Talladega Superspeedway?",
+      "options": ["212.809 mph", "228.648 mph", "215.999 mph", "233.987 mph"],
+      "correct": 0,
+      "explanation": "Bill Elliott set the qualifying record at Talladega with a speed of 212.809 mph in 1987.",
+      "difficulty": "hard",
+      "category": "records"
+    },
+    {
+      "id": 41,
+      "question": "Which driver holds the record for most consecutive NASCAR Cup Series championships?",
+      "options": ["Richard Petty", "Dale Earnhardt", "Jimmie Johnson", "Cale Yarborough"],
+      "correct": 2,
+      "explanation": "Jimmie Johnson won 5 consecutive NASCAR Cup Series championships from 2006-2010.",
+      "difficulty": "hard",
+      "category": "records"
+    },
+    {
+      "id": 42,
+      "question": "What is the fuel capacity of a NASCAR Cup Series fuel cell?",
+      "options": ["18 gallons", "20 gallons", "22 gallons", "17.75 gallons"],
+      "correct": 3,
+      "explanation": "NASCAR Cup Series cars have a fuel cell capacity of 17.75 gallons.",
+      "difficulty": "hard",
+      "category": "technical"
+    },
+    {
+      "id": 43,
+      "question": "Which track has the steepest banking in NASCAR Cup Series?",
+      "options": ["Daytona", "Talladega", "Dover", "Bristol"],
+      "correct": 2,
+      "explanation": "Dover International Speedway has the steepest banking at 24 degrees throughout the entire track.",
+      "difficulty": "hard",
+      "category": "tracks"
+    },
+    {
+      "id": 44,
+      "question": "What year did NASCAR implement the current playoff elimination format?",
+      "options": ["2014", "2015", "2016", "2017"],
+      "correct": 0,
+      "explanation": "NASCAR implemented the current playoff elimination format in 2014, creating the 'Championship 4' finale.",
+      "difficulty": "hard",
+      "category": "rules"
+    },
+    {
+      "id": 45,
+      "question": "Which manufacturer won the first NASCAR Cup Series Manufacturer Championship?",
+      "options": ["Ford", "Chevrolet", "Plymouth", "Oldsmobile"],
+      "correct": 2,
+      "explanation": "Plymouth won the first NASCAR Cup Series Manufacturer Championship in 1955.",
+      "difficulty": "hard",
+      "category": "manufacturers"
+    }
+  ]
+}
