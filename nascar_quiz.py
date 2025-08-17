@@ -234,40 +234,65 @@ if not st.session_state.quiz_started:
                 st.rerun()
 
 # Quiz in progress
-# ...existing code...
-
 elif st.session_state.current_question < len(st.session_state.quiz_questions):
     current_q = st.session_state.quiz_questions[st.session_state.current_question]
     current_difficulty = current_q.get('difficulty', 'medium')
-
-    # Progress bar, score, and difficulty indicator in one row
-    col_score, col_progress, col_difficulty = st.columns([1, 6, 1])
-    with col_score:
-        # Use larger text for score and align to right
-        st.markdown(
-            f"<div style='font-size:1.5em; font-weight:bold; text-align:right;'>"
-            f"Score<br>{st.session_state.score}/{st.session_state.current_question}"
-            f"</div>",
-            unsafe_allow_html=True
-        )
-    with col_progress:
-        progress = (st.session_state.current_question) / len(st.session_state.quiz_questions)
-        st.markdown(
-            f"<div style='text-align:center; font-size:1.2em; font-weight:bold; margin-bottom:-10px;'>"
-            f"Question {st.session_state.current_question + 1} of {len(st.session_state.quiz_questions)}"
-            f"</div>",
-            unsafe_allow_html=True
-    )
-    st.progress(progress)
-    with col_difficulty:
-        st.metric("Difficulty Level", f"{get_difficulty_emoji(current_difficulty)} {current_difficulty.title()}")
-
-    # Center the question and options
-    left, center, right = st.columns([1, 2, 1])
-    with center:
-        st.markdown(f"### Question {st.session_state.current_question + 1} {get_difficulty_emoji(current_difficulty)}")
-        st.markdown(f"**{current_q['question']}**")
-
+    
+    # Progress bar
+    progress = (st.session_state.current_question) / len(st.session_state.quiz_questions)
+    st.progress(progress, text=f"Question {st.session_state.current_question + 1} of {len(st.session_state.quiz_questions)}")
+    
+    # Centered current score
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col2:
+        st.metric("Current Score", f"{st.session_state.score}/{st.session_state.current_question}")
+    
+    # Centered question with bigger text
+    st.markdown("<br>", unsafe_allow_html=True)  # Add some space
+    
+    # Center the question number and difficulty indicator
+    st.markdown(f"""
+    <div style='text-align: center; margin-bottom: 20px;'>
+        <h2>Question {st.session_state.current_question + 1} {get_difficulty_emoji(current_difficulty)}</h2>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Center the question text with bigger font
+    st.markdown(f"""
+    <div style='text-align: center; margin: 30px 0; padding: 20px;'>
+        <h3 style='color: #ffffff; font-size: 1.5rem; line-height: 1.4;'>{current_q['question']}</h3>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("<br>", unsafe_allow_html=True)  # Add space before options
+    
+    # Answer options with bigger text, centered, and no preselection
+    col1, col2, col3 = st.columns([0.5, 3, 0.5])
+    with col2:
+        # Style the radio button labels with bigger text and center them
+        st.markdown("""
+        <style>
+        .stRadio > div {
+            font-size: 1.2rem !important;
+            line-height: 1.5 !important;
+            text-align: center !important;
+        }
+        .stRadio > div > label {
+            font-size: 1.2rem !important;
+            padding: 8px 0 !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+        .stRadio > div > label > div {
+            font-size: 1.2rem !important;
+            text-align: center !important;
+        }
+        .stRadio > div > label > div:first-child {
+            margin-right: 8px !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        
         selected_option = st.radio(
             "Choose your answer:",
             options=range(len(current_q["options"])),
@@ -275,19 +300,17 @@ elif st.session_state.current_question < len(st.session_state.quiz_questions):
             key=f"q_{st.session_state.current_question}",
             index=None  # This prevents any option from being preselected
         )
-
-        # Add vertical space before the submit button
-        st.markdown("<br>", unsafe_allow_html=True)
-        btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 1])
-        with btn_col2:
-            if selected_option is not None:
-                if st.button("Submit Answer", type="primary", use_container_width=True):
-                    submit_answer(selected_option)
-                    st.rerun()
-            else:
-                st.button("Submit Answer", type="primary", use_container_width=True, disabled=True)
-                st.caption("Please select an answer first")
-# ...existing code...
+    
+    # Submit button with validation
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col2:
+        if selected_option is not None:
+            if st.button("Submit Answer", type="primary", use_container_width=True):
+                submit_answer(selected_option)
+                st.rerun()
+        else:
+            st.button("Submit Answer", type="primary", use_container_width=True, disabled=True)
+            st.caption("Please select an answer first")
 
 # Quiz completed - Results screen with difficulty analysis
 else:
