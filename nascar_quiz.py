@@ -28,6 +28,8 @@ if 'all_questions' not in st.session_state:
     st.session_state.all_questions = []
 if 'selected_difficulty' not in st.session_state:
     st.session_state.selected_difficulty = 'mixed'
+if 'selected_category' not in st.session_state:
+    st.session_state.selected_category = 'all'
 
 @st.cache_data
 def load_questions_from_json(file_path="questions.json"):
@@ -58,17 +60,42 @@ def initialize_questions():
             return False
     return True
 
-def filter_questions_by_difficulty(difficulty_level):
+def filter_questions_by_difficulty(questions, difficulty_level):
     """Filter questions based on selected difficulty"""
     if difficulty_level == 'mixed':
-        return st.session_state.all_questions
+        return questions
     
     filtered_questions = [
-        q for q in st.session_state.all_questions 
+        q for q in questions 
         if q.get('difficulty', '').lower() == difficulty_level.lower()
     ]
     
     return filtered_questions
+
+def filter_questions_by_category(questions, category):
+    """Filter questions based on selected category"""
+    if category == 'all':
+        return questions
+    
+    filtered_questions = [
+        q for q in questions 
+        if q.get('category', '').lower() == category.lower()
+    ]
+    
+    return filtered_questions
+
+def get_available_categories():
+    """Get list of available categories"""
+    if not st.session_state.all_questions:
+        return []
+    
+    categories = set()
+    for question in st.session_state.all_questions:
+        category = question.get('category', 'Unknown')
+        if category:
+            categories.add(category)
+    
+    return sorted(list(categories))
 
 def get_difficulty_stats():
     """Get statistics about questions by difficulty"""
@@ -81,6 +108,32 @@ def get_difficulty_stats():
         stats[difficulty] = stats.get(difficulty, 0) + 1
     
     return stats
+
+def get_category_stats():
+    """Get statistics about questions by category"""
+    if not st.session_state.all_questions:
+        return {}
+    
+    stats = {}
+    for question in st.session_state.all_questions:
+        category = question.get('category', 'Unknown')
+        stats[category] = stats.get(category, 0) + 1
+    
+    return stats
+
+def get_filtered_question_count(difficulty, category):
+    """Get count of questions matching both difficulty and category filters"""
+    questions = st.session_state.all_questions
+    
+    # Apply category filter
+    if category != 'all':
+        questions = [q for q in questions if q.get('category', '').lower() == category.lower()]
+    
+    # Apply difficulty filter
+    if difficulty != 'mixed':
+        questions = [q for q in questions if q.get('difficulty', '').lower() == difficulty.lower()]
+    
+    return len(questions)
 
 def calculate_difficulty_score(answers):
     """Calculate score with difficulty weighting"""
@@ -100,27 +153,29 @@ def calculate_difficulty_score(answers):
     
     return total_weighted_score, max_possible_score
 
-def start_quiz(difficulty_level='mixed'):
-    """Initialize a new quiz session with difficulty selection"""
+def start_quiz(difficulty_level='mixed', category='all'):
+    """Initialize a new quiz session with difficulty and category selection"""
     if not st.session_state.all_questions:
         st.error("Cannot start quiz: No questions available.")
         return False
     
-    # Filter questions by difficulty
-    available_questions = filter_questions_by_difficulty(difficulty_level)
+    # Filter questions by category first, then difficulty
+    available_questions = filter_questions_by_category(st.session_state.all_questions, category)
+    available_questions = filter_questions_by_difficulty(available_questions, difficulty_level)
     
     if not available_questions:
-        st.error(f"No questions available for {difficulty_level} difficulty level.")
+        st.error(f"No questions available for {difficulty_level} difficulty in {category} category.")
         return False
     
     if len(available_questions) < 5:
-        st.warning(f"Only {len(available_questions)} questions available for {difficulty_level} difficulty.")
+        st.warning(f"Only {len(available_questions)} questions available for {difficulty_level} difficulty in {category} category.")
         
     st.session_state.quiz_started = True
     st.session_state.current_question = 0
     st.session_state.score = 0
     st.session_state.answers = []
     st.session_state.selected_difficulty = difficulty_level
+    st.session_state.selected_category = category
     
     # Randomize questions for each quiz
     num_questions = min(5, len(available_questions))
@@ -141,7 +196,8 @@ def submit_answer(selected_option):
         "correct": current_q["correct"],
         "is_correct": is_correct,
         "explanation": current_q["explanation"],
-        "difficulty": current_q.get("difficulty", "medium")
+        "difficulty": current_q.get("difficulty", "medium"),
+        "category": current_q.get("category", "Unknown")
     })
     
     st.session_state.current_question += 1
@@ -163,6 +219,21 @@ def get_difficulty_emoji(difficulty):
     }
     return difficulty_emojis.get(difficulty.lower(), '⚪')
 
+def get_category_emoji(category):
+    """Get emoji for category"""
+    category_emojis = {
+        'history': '📚',
+        'drivers': '👤',
+        'tracks': '🏁',
+        'cars': '🏎️',
+        'records': '🏆',
+        'rules': '📋',
+        'teams': '👥',
+        'general': '🎯',
+        'unknown': '❓'
+    }
+    return category_emojis.get(category.lower(), '🎯')
+
 def get_difficulty_color(difficulty):
     """Get color for difficulty level"""
     difficulty_colors = {
@@ -180,14 +251,16 @@ st.markdown("---")
 if not initialize_questions():
     st.stop()
 
-# Display question statistics in sidebar
+# Get available categories and stats
+available_categories = get_available_categories()
+difficulty_stats = get_difficulty_stats()
+category_stats = get_category_stats()
+
+# Display question statistics
 if st.session_state.all_questions:
     total_questions = len(st.session_state.all_questions)
-    categories = list(set(q.get('category', 'Unknown') for q in st.session_state.all_questions))
-    difficulties = list(set(q.get('difficulty', 'Unknown') for q in st.session_state.all_questions))
-    difficulty_stats = get_difficulty_stats()
 
-# Quiz not started - Welcome screen with difficulty selection
+# Quiz not started - Welcome screen with difficulty and category selection
 if not st.session_state.quiz_started:
     col1, col2, col3 = st.columns([1, 2, 1])
     
@@ -199,44 +272,84 @@ if not st.session_state.quiz_started:
         - 5 multiple choice questions, try and get them all right!
         - You'll get your score at the end, and if you got a question wrong, you'll see the correct answer as well and the reason.
         
-        **Choose your difficulty level:**
+        **Customize your quiz:**
         """)
         
-        # Difficulty selection
+        # Category selection
+        st.markdown("**Choose your category:**")
+        category_options = {'all': f"🎯 All Categories ({total_questions} questions)"}
+        for category in available_categories:
+            emoji = get_category_emoji(category)
+            count = category_stats.get(category, 0)
+            category_options[category] = f"{emoji} {category.title()} ({count} questions)"
+        
+        selected_category = st.selectbox(
+            "Select category:",
+            options=list(category_options.keys()),
+            format_func=lambda x: category_options[x],
+            index=0,
+            key="category_select"
+        )
+        
+        # Difficulty selection (updated based on category)
+        st.markdown("**Choose your difficulty:**")
+        available_count = get_filtered_question_count('mixed', selected_category)
         difficulty_options = {
-            'mixed': f"🎲 Mixed Difficulty ({total_questions} questions)",
-            'easy': f"🟢 Easy ({difficulty_stats.get('easy', 0)} questions)",
-            'medium': f"🟡 Medium ({difficulty_stats.get('medium', 0)} questions)",
-            'hard': f"🔴 Hard ({difficulty_stats.get('hard', 0)} questions)"
+            'mixed': f"🎲 Mixed Difficulty ({available_count} questions)"
         }
+        
+        for difficulty in ['easy', 'medium', 'hard']:
+            count = get_filtered_question_count(difficulty, selected_category)
+            if count > 0:
+                emoji = get_difficulty_emoji(difficulty)
+                difficulty_options[difficulty] = f"{emoji} {difficulty.title()} ({count} questions)"
         
         selected_difficulty = st.selectbox(
             "Select difficulty:",
             options=list(difficulty_options.keys()),
             format_func=lambda x: difficulty_options[x],
-            index=0
+            index=0,
+            key="difficulty_select"
         )
         
-        # Difficulty descriptions
-        if selected_difficulty == 'easy':
-            st.info("🟢 **Easy**: Basic NASCAR knowledge - great for beginners!")
-        elif selected_difficulty == 'medium':
-            st.info("🟡 **Medium**: Moderate NASCAR knowledge - for casual fans!")
-        elif selected_difficulty == 'hard':
-            st.info("🔴 **Hard**: Advanced NASCAR knowledge - for true experts!")
+        # Display information about selections
+        col_info1, col_info2 = st.columns(2)
+        
+        with col_info1:
+            if selected_category != 'all':
+                category_emoji = get_category_emoji(selected_category)
+                st.info(f"{category_emoji} **{selected_category.title()}**: Questions focused on this specific NASCAR topic!")
+            else:
+                st.info("🎯 **All Categories**: Questions from all NASCAR topics - comprehensive challenge!")
+        
+        with col_info2:
+            if selected_difficulty == 'easy':
+                st.info("🟢 **Easy**: Basic NASCAR knowledge - great for beginners!")
+            elif selected_difficulty == 'medium':
+                st.info("🟡 **Medium**: Moderate NASCAR knowledge - for casual fans!")
+            elif selected_difficulty == 'hard':
+                st.info("🔴 **Hard**: Advanced NASCAR knowledge - for true experts!")
+            else:
+                st.info("🎲 **Mixed**: Questions from all difficulty levels - balanced challenge!")
+        
+        # Show final question count
+        final_count = get_filtered_question_count(selected_difficulty, selected_category)
+        if final_count < 5:
+            st.warning(f"⚠️ Only {final_count} questions available with current selections. Consider broadening your criteria.")
         else:
-            st.info("🎲 **Mixed**: Questions from all difficulty levels - balanced challenge!")
+            st.success(f"✅ {min(5, final_count)} questions ready for your quiz!")
         
         st.markdown("Ready to put your NASCAR knowledge to the test?")
         
-        if st.button("🚀 Start Quiz", type="primary", use_container_width=True):
-            if start_quiz(selected_difficulty):
+        if st.button("🚀 Start Quiz", type="primary", use_container_width=True, disabled=final_count == 0):
+            if start_quiz(selected_difficulty, selected_category):
                 st.rerun()
 
 # Quiz in progress
 elif st.session_state.current_question < len(st.session_state.quiz_questions):
     current_q = st.session_state.quiz_questions[st.session_state.current_question]
     current_difficulty = current_q.get('difficulty', 'medium')
+    current_category = current_q.get('category', 'Unknown')
     
     # Progress bar
     progress = (st.session_state.current_question) / len(st.session_state.quiz_questions)
@@ -250,10 +363,13 @@ elif st.session_state.current_question < len(st.session_state.quiz_questions):
     # Centered question with bigger text
     st.markdown("<br>", unsafe_allow_html=True)  # Add some space
     
-    # Center the question number and difficulty indicator
+    # Center the question number, difficulty, and category indicators
+    category_emoji = get_category_emoji(current_category)
+    difficulty_emoji = get_difficulty_emoji(current_difficulty)
     st.markdown(f"""
     <div style='text-align: center; margin-bottom: 20px;'>
-        <h2>Question {st.session_state.current_question + 1} {get_difficulty_emoji(current_difficulty)}</h2>
+        <h2>Question {st.session_state.current_question + 1} {difficulty_emoji} {category_emoji}</h2>
+        <p style='color: #888; font-size: 0.9rem;'>{current_difficulty.title()} • {current_category.title()}</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -312,7 +428,7 @@ elif st.session_state.current_question < len(st.session_state.quiz_questions):
             st.button("Submit Answer", type="primary", use_container_width=True, disabled=True)
             st.caption("Please select an answer first")
 
-# Quiz completed - Results screen with difficulty analysis
+# Quiz completed - Results screen with difficulty and category analysis
 else:
     st.balloons()
     
@@ -330,6 +446,12 @@ else:
     with col2:
         st.markdown("### 🏁 Quiz Complete!")
         
+        # Show quiz settings
+        category_emoji = get_category_emoji(st.session_state.selected_category)
+        difficulty_emoji = get_difficulty_emoji(st.session_state.selected_difficulty) if st.session_state.selected_difficulty != 'mixed' else '🎲'
+        
+        st.markdown(f"**Quiz Type:** {category_emoji} {st.session_state.selected_category.title()} • {difficulty_emoji} {st.session_state.selected_difficulty.title()}")
+        
         # Score display with different messages based on performance
         if percentage >= 80:
             st.success(f"🏆 Excellent! You scored {final_score}/{total_questions} ({percentage:.0f}%)")
@@ -346,9 +468,34 @@ else:
             st.markdown(f"**Weighted Score:** {weighted_score}/{max_weighted} ({weighted_percentage:.0f}%)")
             st.caption("*Weighted score accounts for question difficulty (Easy=1pt, Medium=2pts, Hard=3pts)*")
     
-    # Difficulty breakdown
+    # Category and difficulty breakdown
+    st.markdown("---")
+    
+    # Category breakdown (if mixed categories)
+    if st.session_state.selected_category == 'all':
+        st.markdown("### 📊 Performance by Category")
+        
+        category_breakdown = {}
+        for answer in st.session_state.answers:
+            cat = answer.get('category', 'Unknown')
+            if cat not in category_breakdown:
+                category_breakdown[cat] = [0, 0]  # [correct, total]
+            category_breakdown[cat][1] += 1  # total
+            if answer['is_correct']:
+                category_breakdown[cat][0] += 1  # correct
+        
+        cols = st.columns(min(len(category_breakdown), 4))
+        for i, (cat, (correct, total)) in enumerate(category_breakdown.items()):
+            with cols[i % len(cols)]:
+                pct = (correct / total) * 100
+                cat_emoji = get_category_emoji(cat)
+                st.metric(
+                    f"{cat_emoji} {cat.title()}", 
+                    f"{correct}/{total} ({pct:.0f}%)"
+                )
+    
+    # Difficulty breakdown (if mixed difficulty)
     if st.session_state.selected_difficulty == 'mixed':
-        st.markdown("---")
         st.markdown("### 📈 Performance by Difficulty")
         
         difficulty_breakdown = {'easy': [0, 0], 'medium': [0, 0], 'hard': [0, 0]}
@@ -375,9 +522,11 @@ else:
     
     for i, answer in enumerate(st.session_state.answers, 1):
         question_difficulty = answer.get('difficulty', 'medium')
+        question_category = answer.get('category', 'Unknown')
         difficulty_emoji = get_difficulty_emoji(question_difficulty)
+        category_emoji = get_category_emoji(question_category)
         
-        with st.expander(f"Question {i}: {'✅' if answer['is_correct'] else '❌'} {difficulty_emoji} {question_difficulty.title()}"):
+        with st.expander(f"Question {i}: {'✅' if answer['is_correct'] else '❌'} {difficulty_emoji} {category_emoji} {question_category.title()}"):
             st.markdown(f"**{answer['question']}**")
             
             col1, col2 = st.columns(2)
@@ -408,7 +557,7 @@ else:
             reset_quiz()
             st.rerun()
 
-# Sidebar with additional info including difficulty stats
+# Sidebar with additional info including difficulty stats only
 with st.sidebar:
     st.markdown("### 🏁 About This Quiz")
     
@@ -416,7 +565,6 @@ with st.sidebar:
         st.markdown(f"""
         **Question Database:**
         - Total Questions: {total_questions}
-        - Categories: {', '.join(sorted(categories))}
         
         **Difficulty Breakdown:**
         """)
@@ -428,17 +576,19 @@ with st.sidebar:
         
         st.markdown(f"""
         **Quiz Format:**
-        - {min(5, total_questions)} random questions per quiz
+        - Up to 5 random questions per quiz
         - Multiple choice format with instant feedback and explanations
-        - Choose your preferred difficulty level!
+        - Choose your preferred difficulty level and category!
         """)
     
     st.markdown("""
-    This NASCAR quiz tests your knowledge of:
-    - NASCAR history and records
-    - Famous drivers and nicknames  
-    - Iconic tracks and races
-    - Racing terminology and facts
+    This NASCAR quiz tests your knowledge across different categories:
+    - **History**: NASCAR's past and milestones
+    - **Drivers**: Famous racers and their achievements
+    - **Tracks**: Racing venues and their characteristics  
+    - **Cars**: Vehicle specs and technology
+    - **Records**: Racing achievements and statistics
+    - **Rules**: NASCAR regulations and procedures
     
     **Difficulty Levels:**
     - 🟢 Easy: Basic NASCAR knowledge
@@ -461,8 +611,13 @@ with st.sidebar:
     if st.session_state.quiz_started:
         st.markdown("---")
         current_difficulty = st.session_state.selected_difficulty
+        current_category = st.session_state.selected_category
         difficulty_emoji = get_difficulty_emoji(current_difficulty) if current_difficulty != 'mixed' else '🎲'
-        st.markdown(f"**Current Mode:** {difficulty_emoji} {current_difficulty.title()}")
+        category_emoji = get_category_emoji(current_category)
+        
+        st.markdown(f"**Current Quiz:**")
+        st.markdown(f"- {category_emoji} Category: {current_category.title()}")
+        st.markdown(f"- {difficulty_emoji} Difficulty: {current_difficulty.title()}")
         
         if st.button("🏠 Quit Quiz", type="secondary"):
             reset_quiz()

@@ -809,6 +809,132 @@
       "explanation": "NASCAR began implementing SAFER (Steel and Foam Energy Reduction) barriers in 2002 to improve driver safety.",
       "difficulty": "hard",
       "category": "technical"
-    }
+    },
+    {
+    "id": 91,
+    "question": "What is the premier series in NASCAR known as?",
+    "options": ["NASCAR Xfinity Series", "NASCAR Cup Series", "NASCAR Craftsman Truck Series", "NASCAR Grand National Series"],
+    "correct": 1,
+    "explanation": "The NASCAR Cup Series is the top-tier, premier racing series in NASCAR, featuring the sport's biggest stars and most prestigious races.",
+    "difficulty": "easy",
+    "category": "series"
+  },
+  {
+    "id": 92,
+    "question": "Which NASCAR series serves as the primary developmental league for the Cup Series?",
+    "options": ["NASCAR Craftsman Truck Series", "NASCAR Xfinity Series", "ARCA Menards Series", "NASCAR Whelen Modified Tour"],
+    "correct": 1,
+    "explanation": "The NASCAR Xfinity Series is considered the main stepping stone to the Cup Series, where many future Cup champions develop their skills.",
+    "difficulty": "easy",
+    "category": "series"
+  },
+  {
+    "id": 93,
+    "question": "What is the third-tier national touring series in NASCAR called?",
+    "options": ["NASCAR Xfinity Series", "ARCA Menards Series", "NASCAR Craftsman Truck Series", "NASCAR Whelen Modified Tour"],
+    "correct": 2,
+    "explanation": "The NASCAR Craftsman Truck Series is NASCAR's third national touring series, featuring modified pickup trucks instead of traditional stock cars.",
+    "difficulty": "medium",
+    "category": "series"
+  },
+  {
+    "id": 94,
+    "question": "How many races are typically in a NASCAR Cup Series regular season?",
+    "options": ["24 races", "26 races", "28 races", "30 races"],
+    "correct": 1,
+    "explanation": "The NASCAR Cup Series regular season consists of 26 races, followed by a 10-race playoff format to determine the champion.",
+    "difficulty": "medium",
+    "category": "schedule"
+  },
+  {
+    "id": 95,
+    "question": "What type of vehicles compete in the NASCAR Craftsman Truck Series?",
+    "options": ["Stock cars", "Modified pickup trucks", "Open-wheel cars", "Sports cars"],
+    "correct": 1,
+    "explanation": "The NASCAR Craftsman Truck Series features purpose-built racing vehicles that resemble pickup trucks, with unique aerodynamics and handling characteristics.",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "id": 96,
+    "question": "Which NASCAR series was formerly known as the Busch Series?",
+    "options": ["NASCAR Cup Series", "NASCAR Xfinity Series", "NASCAR Craftsman Truck Series", "ARCA Menards Series"],
+    "correct": 1,
+    "explanation": "The NASCAR Xfinity Series was previously called the Busch Series from 1984-2007, named after sponsor Anheuser-Busch.",
+    "difficulty": "medium",
+    "category": "history"
+  },
+  {
+    "id": 97,
+    "question": "What is the playoff format called that determines the NASCAR Cup Series champion?",
+    "options": ["NASCAR Chase", "NASCAR Cup Series Playoffs", "NASCAR Championship Series", "NASCAR Elimination Series"],
+    "correct": 1,
+    "explanation": "The NASCAR Cup Series Playoffs is a 10-race elimination format that determines the series champion, replacing the old points system in 2004.",
+    "difficulty": "medium",
+    "category": "format"
+  },
+  {
+    "id": 98,
+    "question": "Which series typically features the youngest drivers in NASCAR's national touring divisions?",
+    "options": ["NASCAR Cup Series", "NASCAR Xfinity Series", "NASCAR Craftsman Truck Series", "All series have similar age ranges"],
+    "correct": 2,
+    "explanation": "The NASCAR Craftsman Truck Series often serves as an entry point for young drivers, with many teenagers and early-20s drivers getting their first national touring experience.",
+    "difficulty": "medium",
+    "category": "demographics"
+  },
+  {
+    "id": 99,
+    "question": "What are NASCAR's regional racing divisions collectively known as?",
+    "options": ["NASCAR Local Series", "NASCAR Regional Series", "NASCAR Development Series", "NASCAR Minor Leagues"],
+    "correct": 1,
+    "explanation": "NASCAR Regional Series encompasses various regional touring divisions like the Whelen Modified Tour, Pinty's Series, and others that operate below the national level.",
+    "difficulty": "medium",
+    "category": "series"
+  },
+  {
+    "id": 100,
+    "question": "Which NASCAR series races on the most diverse schedule including road courses, ovals, and street circuits?",
+    "options": ["NASCAR Xfinity Series", "NASCAR Craftsman Truck Series", "NASCAR Cup Series", "All series have similar diversity"],
+    "correct": 2,
+    "explanation": "The NASCAR Cup Series features the most diverse racing schedule, including superspeedways, intermediate ovals, short tracks, road courses, and street circuits.",
+    "difficulty": "medium",
+    "category": "tracks"
+  },
+  {
+    "id": 101,
+    "question": "What restrictions exist for Cup Series drivers competing in lower series?",
+    "options": ["No restrictions", "Limited to 5 races per season", "Limited to 7 races per season", "Cannot compete at all"],
+    "correct": 2,
+    "explanation": "Cup Series drivers are limited to competing in a maximum of 7 Xfinity Series races and 7 Truck Series races per season to preserve opportunities for developing drivers.",
+    "difficulty": "hard",
+    "category": "regulations"
+  },
+  {
+    "id": 102,
+    "question": "Which of these is NOT a NASCAR Regional Series?",
+    "options": ["NASCAR Whelen Modified Tour", "NASCAR Pinty's Series", "ARCA Menards Series", "NASCAR Euro Series"],
+    "correct": 2,
+    "explanation": "The ARCA Menards Series is actually a separate touring series that partners with NASCAR but is not technically a NASCAR Regional Series division.",
+    "difficulty": "hard",
+    "category": "series"
+  },
+  {
+    "id": 103,
+    "question": "What is a key technical difference between Cup Series and Xfinity Series cars?",
+    "options": ["Cup cars have more horsepower", "Xfinity cars are heavier", "Cup cars use different fuel", "No significant differences"],
+    "correct": 0,
+    "explanation": "Cup Series cars typically produce more horsepower than Xfinity Series cars and feature different aerodynamic packages and weight specifications.",
+    "difficulty": "hard",
+    "category": "technical"
+  },
+  {
+    "id": 104,
+    "question": "How many drivers make the NASCAR Cup Series playoffs?",
+    "options": ["12 drivers", "16 drivers", "20 drivers", "24 drivers"],
+    "correct": 1,
+    "explanation": "The NASCAR Cup Series playoffs feature 16 drivers who either win races during the regular season or qualify based on points, competing in a 10-race elimination format.",
+    "difficulty": "medium",
+    "category": "format"
+  }
   ]
 }
